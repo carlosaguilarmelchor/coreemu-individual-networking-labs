@@ -4,6 +4,28 @@ This repository provides tools to teachers to set up individual networking labs 
 
 WARNING: This software is highly experimental and should only be run on a machine in which it is an acceptable risk that users become root. It is recommended to use it only on a virtual machine that has no outbound connectivity and that only contains the labs. It must therefore also be acceptable that a user which becomes root accesses the sources of the labs. As of now, we are not aware of a way a user may become root on the host machine if he is only given access to a lab in which he accesses containers but the system is not audited and there may be fundamental exploits, or insecure labs that allow users to become root on the host. 
 
+# Quick usage example
+
+Follow the installation instructions. Call `sudo core-python` on the repository home directory and write:
+
+```
+>>> import handle_sessions
+>>> import crypt
+>>> myethernetif="enp0s3" # Replace with a wired (or dummy) interface name in your computer
+>>> mypassword_to_access_a_lab="supersecret"
+>>> for instance_number in range(20):
+...     handle_sessions.start_unique_session("core-xmls/sniffing_lab.xml", "username_ignored_here", crypt.crypt(mypassword_to_access_a_lab), instance_number)
+```
+
+This will create 20 networking sniffing networking labs with an attacker machine on each. The users can access the attacker machines with `ssh root@10.XX.1.21` with XX = (100 + their instance number). The password is set to "supersecret" for all of them, but the loop can be modified so that each user has a different password (note that passwords encrypted with `crypt`, e.g. from a shadow file, can also be directly provided). The lab can be modified so that instead of accessing as root the string "username_ignored_here" (modified approriately) can define the user with which they connect to the attacker machine.
+
+Next section describes how to create other lab templates and the final section of this README gives installation instructions.
+
+# Creating labs
+
+Under constructions
+
+
 # Installation
 
 ## CORE installation
