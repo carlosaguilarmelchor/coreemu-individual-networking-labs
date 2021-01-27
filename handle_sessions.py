@@ -7,6 +7,7 @@ from google.protobuf.json_format import MessageToJson
 from functools import wraps
 import argparse
 import pyroute2
+import os
 import logging as log
 
 ethernetif="enp0s3"
@@ -107,8 +108,15 @@ def start_unique_session(core, s, username, userpassword, usernumber):
         info_json(return_value)
         log.info("Instance created and started")
     except:
-        log.error("Could not create and start session")
-        raise
+        try:
+            log.error("Exception on instance creation removing stopped docker containers")
+            os.system("docker rm $(docker ps -a -q)")
+            return_value  = core.open_xml(f"/tmp/handlesessions{usernumber}.xml", True)
+            info_json(return_value)
+            log.info("Instance created and started")
+        except:
+            log.error("Could not create and start session")
+            raise
     try:
         ndb = pyroute2.NDB()
         vlan_bridge_id = ndb.interfaces.dump().filter(ifname=f"hsvlan_{usernumber}")[0].master
