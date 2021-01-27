@@ -19,6 +19,8 @@ Follow the installation instructions. Call `sudo core-python` on the repository 
 
 This will create 20 networking sniffing networking labs with an attacker machine on each. The users can access the attacker machines with `ssh root@10.XX.1.21` with XX = (100 + their instance number). The password is set to "supersecret" for all of them, but the loop can be modified so that each user has a different password (note that passwords encrypted with `crypt`, e.g. from a shadow file, can also be directly provided). The lab can be modified so that instead of accessing as root the string "username_ignored_here" (modified approriately) can define the user with which they connect to the attacker machine.
 
+To kill all the labs just exit the `core-python` interpreter and run `sudo ./handle_sessions --kill -1`. You can also list existing labs with `sudo ./handle_sessions --list-sessions` and see other usages of `handle_sessions` as a script with `sudo ./handle_sessions --help`.
+
 Next section describes how to create other lab templates and the final section of this README gives installation instructions.
 
 # Creating labs
