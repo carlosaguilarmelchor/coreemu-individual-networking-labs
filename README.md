@@ -25,7 +25,14 @@ Next section describes how to create other lab templates and the final section o
 
 # Creating labs
 
-Under constructions
+## Provided labs
+The labs can be opened within the GUI, which is started with `sudo core-pygui`. This gives easy access to the topology and node configuration. Refer to CORE documentation for how to use the GUI.
+  * `insecure_minimal_test.xml` is an insecure lab in which users will immediately gain root access to the host. It shows what should not be given to users that we want to restrict from obtaining root access to the host (give them access to a CORE node that is not a container). It also gives a simple lab that does not need docker to use the script of our repository.
+  *  `sniffing_lab.xml` is a lab that gives access to an attacker machine, a docker container, that must sniff a communication between an FTP client and server. The client and server are not containers but the user cannot access them, he can only sniff their communications to obtain a flag that proves he has solved the challenge. Appropriate tools (tshar, termshark, tcpflow) are provided for the attack to be easy.
+ 
+## Build new labs.
+
+Under construction. Note that modifying `sniffing_lab.xml` by replacing the hub, client, and server nodes should give an easy way to obtain new labs. Modifying the attacker, firewall of rj45 nodes is not recommended without further instructions.
 
 
 # Installation
